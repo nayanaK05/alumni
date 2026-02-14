@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alumni Portal</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .container{
+            background:white;
+            padding:50px;
+            border-radius:20px;
+            text-align:center;
+            width:400px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            font-size:32px;
+            margin-bottom:10px;
+            color:#1f4037;
+        }
+
+        p{
+            margin-bottom:30px;
+            color:gray;
+        }
+
+        .btn{
+            display:block;
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:none;
+            border-radius:30px;
+            font-size:16px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .login{
+            background:#1f4037;
+            color:white;
+        }
+
+        .login:hover{
+            background:#16332c;
+        }
+
+        .register{
+            background:white;
+            color:#1f4037;
+            border:2px solid #1f4037;
+        }
+
+        .register:hover{
+            background:#1f4037;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Alumni Portal</h1>
+    <p>Connect. Share. Grow Together.</p>
+
+    <a href="/login/">
+        <button class="btn login">Login</button>
+    </a>
+
+    <a href="/register/">
+        <button class="btn register">Register</button>
+    </a>
+</div>
+
+</body>
+</html>
