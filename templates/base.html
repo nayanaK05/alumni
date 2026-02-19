@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alumni Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body style="background-color:#f3f4f6;">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+    <a class="navbar-brand fw-bold" href="#">Alumni Portal</a>
+
+    <div class="mx-auto">
+        <a class="nav-link d-inline px-3 fw-semibold text-primary" href="#">Feed</a>
+        <a class="nav-link d-inline px-3" href="#">Alumni</a>
+        <a class="nav-link d-inline px-3" href="#">Events</a>
+        <a class="nav-link d-inline px-3" href="#">Jobs</a>
+        <a class="nav-link d-inline px-3" href="#">Messages</a>
+    </div>
+
+    <div class="d-flex align-items-center">
+
+        <!-- Notification -->
+        <div class="position-relative me-3">
+            <span class="me-3">🔔</span>
+        </div>
+
+        <!-- Profile -->
+      {% if request.user.alumniprofile.profile_picture %}
+        <img src="{{ request.user.alumniprofile.profile_picture.url }}"
+            class="rounded-circle"
+            width="40"
+            height="40">
+      {% else %}
+        <img src="{% static 'images/default.png' %}"
+            class="rounded-circle"
+            width="40"
+            height="40">
+      {% endif %}
+
+
+    </div>
+</nav>
+
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
+

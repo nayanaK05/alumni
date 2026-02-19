@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+    <!-- LEFT SIDEBAR -->
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3 text-center">
+            <h4>{{ profile.full_name }}</h4>
+            <p class="text-muted">{{ profile.department }}</p>
+            <p>Batch {{ profile.passout_year }}</p>
+        </div>
+    </div>
+
+
+    <!-- MAIN FEED -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-3 mb-3">
+            <h5>Share an update</h5>
+            <textarea class="form-control mb-2" placeholder="Write something..."></textarea>
+            <button class="btn btn-primary">Post</button>
+        </div>
+
+        <div class="card shadow-sm p-3">
+            <h5>Feed</h5>
+            <p class="text-muted">No posts yet</p>
+        </div>
+    </div>
+
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="col-md-3">
+        <div class="card shadow-sm p-3 mb-3">
+            <h5>Upcoming Events</h5>
+            <p class="text-muted">No events available</p>
+        </div>
+
+        <div class="card shadow-sm p-3">
+            <h5>Job Updates</h5>
+            <p class="text-muted">No jobs posted</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+

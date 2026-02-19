@@ -11,7 +11,8 @@ class AlumniProfile(models.Model):
     phone = models.CharField(max_length=15)
     current_job = models.CharField(max_length=100, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
-    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='default.png')
+
 
     approved = models.BooleanField(default=False)
 

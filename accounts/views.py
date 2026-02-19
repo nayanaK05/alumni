@@ -61,12 +61,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def dashboard(request):
-    Profile = AlumniProfile.objects.get(user=request.user)
+    profile = AlumniProfile.objects.get(user=request.user)
 
-    if not AlumniProfile.approved:
-        return redirect('waiting_page')
+    if not profile.approved:
+        return redirect('waiting')
 
-    return render(request, "accounts/home1.html")
+    return render(request, "portal/dashboard.html", {"profile": profile})
+
+
 
 
 from .models import AlumniProfile
@@ -82,6 +84,7 @@ def complete_profile(request):
         phone = request.POST.get("phone")
         current_job = request.POST.get("current_job")
         company = request.POST.get("company")
+        profile_picture = request.FILES.get("profile_picture")
         
         AlumniProfile.objects.create(
             user=request.user,
@@ -109,38 +112,17 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-@login_required
-def search(request):
-    query = request.GET.get('q')
-    results = []
-
-    if query:
-        results = AlumniProfile.objects.filter(full_name__icontains=query)
-
-    return render(request, 'accounts/search.html', {'results': results})
-
-@login_required
-def profile(request):
-    profile = AlumniProfile.objects.get(user=request.user)
-    return render(request, 'accounts/profile.html', {'profile': profile})
 
 
 
-from django.shortcuts import render, redirect
-from .forms import ProfileUpdateForm
 
-def update_profile(request):
-    profile = request.user.alumniprofile
 
-    if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = ProfileUpdateForm(instance=profile)
 
-    return render(request, 'accounts/update_profile.html', {'form': form})
+
+
+
+
+
 
 
 

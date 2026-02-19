@@ -1,83 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Complete Profile</title>
+{% extends 'base.html' %}
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, sans-serif;
-        }
+{% block content %}
 
-        body{
-            min-height:100vh;
-            background: linear-gradient(135deg, #1f4037, #99f2c8);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3 class="mb-4 text-center">Complete Your Profile</h3>
 
-        .container{
-            background:white;
-            padding:40px;
-            border-radius:20px;
-            width:450px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.2);
-        }
+        <!-- IMPORTANT: enctype added -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        h2{
-            text-align:center;
-            margin-bottom:20px;
-            color:#1f4037;
-        }
+            <div class="mb-3 text-center">
+                <label class="form-label">Profile Picture</label>
+                <input type="file" name="profile_picture" class="form-control">
+            </div>
 
-        input{
-            width:100%;
-            padding:10px;
-            margin:8px 0;
-            border-radius:10px;
-            border:1px solid #ccc;
-        }
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="full_name" class="form-control" required>
+            </div>
 
-        .btn{
-            width:100%;
-            padding:12px;
-            margin-top:15px;
-            border:none;
-            border-radius:25px;
-            background:#1f4037;
-            color:white;
-            font-size:16px;
-            cursor:pointer;
-        }
+            <div class="mb-3">
+                <label class="form-label">Department</label>
+                <input type="text" name="department" class="form-control" required>
+            </div>
 
-        .btn:hover{
-            background:#16332c;
-        }
-    </style>
-</head>
-<body>
+            <div class="mb-3">
+                <label class="form-label">Passout Year</label>
+                <input type="number" name="passout_year" class="form-control" required>
+            </div>
 
-<div class="container">
-    <h2>Complete Your Profile</h2>
+            <div class="mb-3">
+                <label class="form-label">Register Number</label>
+                <input type="text" name="register_number" class="form-control" required>
+            </div>
 
-    <form method="POST">
-        {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" required>
+            </div>
 
-        <input type="text" name="full_name" placeholder="Full Name" required>
-        <input type="text" name="department" placeholder="Department" required>
-        <input type="number" name="passout_year" placeholder="Passout Year" required>
-        <input type="text" name="register_number" placeholder="Register Number" required>
-        <input type="text" name="phone" placeholder="Phone Number" required>
-        <input type="text" name="current_job" placeholder="Current Job">
-        <input type="text" name="company" placeholder="Company">
+            <div class="mb-3">
+                <label class="form-label">Current Job</label>
+                <input type="text" name="current_job" class="form-control">
+            </div>
 
-        <button type="submit">Submit Profile</button>
-    </form>
+            <div class="mb-3">
+                <label class="form-label">Company</label>
+                <input type="text" name="company" class="form-control">
+            </div>
 
+            <button type="submit" class="btn btn-primary w-100">
+                Save Profile
+            </button>
+        </form>
+    </div>
 </div>
 
-</body>
-</html>
+{% endblock %}
