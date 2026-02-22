@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3 class="mb-3">Alumni Network</h3>
+
+    <!-- 🔎 Search Bar -->
+    <form method="GET" class="mb-4">
+        <div style="display:flex; gap:10px;">
+            <input type="text"
+                   name="q"
+                   value="{{ query|default:'' }}"
+                   placeholder="Search by name, department or company..."
+                   class="form-control">
+
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <!-- 👥 Alumni Cards -->
+    <div class="row">
+        {% for alum in alumni %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm p-3 text-center">
+
+                {% if alum.profile_picture %}
+                    <img src="{{ alum.profile_picture.url }}"
+                         class="rounded-circle mb-2"
+                         width="80" height="80">
+                {% else %}
+                    <img src="{% static 'images/default.png' %}"
+                         class="rounded-circle mb-2"
+                         width="80" height="80">
+                {% endif %}
+
+                <h5>{{ alum.full_name }}</h5>
+                <p class="text-muted">{{ alum.department }}</p>
+                <p>{{ alum.company }}</p>
+
+            </div>
+        </div>
+        {% empty %}
+            <p>No alumni found.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

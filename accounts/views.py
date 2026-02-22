@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import AlumniProfile
+from .forms import AlumniProfileForm
 
 
 
@@ -111,6 +112,29 @@ from django.contrib.auth import logout
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+@login_required
+def edit_profile(request):
+    profile = AlumniProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = AlumniProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = AlumniProfileForm(instance=profile)
+
+    return render(request, 'accounts/edit_profile.html', {'form': form})
+
+
+
+@login_required
+def alumni_list(request):
+    alumni = AlumniProfile.objects.filter(approved=True)
+    return render(request, 'accounts/alumni_list.html', {'alumni': alumni})
+
 
 
 
